@@ -1,0 +1,66 @@
+<h1>NAGP DevOps Assignment</h1>
+
+<div class="container">
+    <div class="card" [style]="{'margin-bottom': '2em'}">
+        <div class="card-header text-center">Add Product</div>
+        <div class="card-body">
+            <form class="needs-validation" nonvalidate [formGroup]="addProductForm">
+                <div class="form-group">
+                    <label for="product-name">Enter Product Name</label>
+                    <input type="text" class="form-control" id="product-name" formControlName="name"
+                        [ngClass]="getControlValidationClasses(productNameControl)">
+                    <div class="invalid-feedback"
+                        *ngIf="productNameControl.touched && productNameControl.errors?.required">
+                        Please enter product name
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="quantity-control">Enter Quantity</label>
+                    <input type="text" class="form-control" id="quantity-control" formControlName="quantity"
+                        [ngClass]="getControlValidationClasses(quantityControl)">
+                    <div class="invalid-feedback" *ngIf="quantityControl.touched && quantityControl.errors?.required">
+                        Please enter quantity
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="price-control">Enter Price</label>
+                    <input type="text" class="form-control" id="price-control" formControlName="price"
+                        [ngClass]="getControlValidationClasses(priceControl)">
+                    <div class="invalid-feedback" *ngIf="priceControl.touched && priceControl.errors?.required">
+                        Please enter price
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 3px;">
+                    <button type="submit" class="btn btn-success" [disabled]="!addProductForm.valid"
+                        (click)="onAddProductSubmit()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="products">
+    <table class="table table-hover bg-light table-bordered"
+        style="max-width: 70rem; margin: auto; margin-top: 15px; margin-bottom: 10px;">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Product Id</th>
+                <th scope="col" class="text-center">Product Name</th>
+                <th scope="col" class="text-center">Quantity</th>
+                <th scope="col" class="text-center">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="products.length === 0">
+    <p>No Products found</p>
+</div>
