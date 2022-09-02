@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata: 
+    name: devopsfe-app
+    namespace: public-akashbhardwaj
+    labels:
+        app: devopsfe-app
+spec:
+    type: LoadBalancer
+    selector:
+        app: devopsfe-app
+    ports:
+        - protocol: TCP
+          nodePort: 31700
+          port: 3547
+          targetPort: 80

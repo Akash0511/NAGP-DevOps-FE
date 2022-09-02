@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: devopsfe-app-deployment
+    namespace: public-akashbhardwaj
+    labels:
+        app: devopsfe-app
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: devopsfe-app
+    template:
+        metadata:
+            labels:
+                app: devopsfe-app
+        spec:
+            containers:
+                - name: devopsfe-app
+                  image: bhardwajakash/devopsfe:master
+                  ports:
+                    - name: http
+                      containerPort: 80
+                      protocol: TCP

@@ -9,7 +9,7 @@ export class DemoService {
 
   constructor(private http: HttpClient) { }
 
-  readonly URL = 'http://localhost:46170';
+  readonly URL = 'http://34.172.51.72:80';
 
   async getAllProductDetails() {
     const res = await this.http.get(this.URL + '/getAllProducts').toPromise()
